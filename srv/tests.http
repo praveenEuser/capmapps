@@ -1,0 +1,11 @@
+###Check Action cmd
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseSet/74867AD200E41EDBA5D8B0C98DC28052
+
+
+### POSt using action
+
+POST http://localhost:4004/odata/v4/CatalogService/PurchaseSet/boost
+Content-Type: application/json
+
+{}
+
