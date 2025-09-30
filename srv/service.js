@@ -5,7 +5,7 @@ module.exports = cds.service.impl(async function() {
     const {PurchaseSet} = this.entities;
 
     this.on('boost',async(req)=> {
-        console.log("Done bro");
+        console.log("Added");
         
         try {
 
