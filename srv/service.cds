@@ -15,6 +15,8 @@ service MyService @(path : 'CatalogService') {
     entity PurchaseSet as projection on Otransaction.purchaseorder
     actions {
         action boost() returns PurchaseSet;
+
+        function largestOrder() returns PurchaseSet;
     };
     entity Po_items as projection on Otransaction.poitems;
 }

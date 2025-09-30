@@ -2,19 +2,36 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "cds serve",
-      "request": "launch",
       "type": "node",
+      "request": "launch",
+      "name": "Run cds-deploy",
+      "runtimeExecutable": "cds-deploy",
       "cwd": "${workspaceFolder}",
+      "args": []
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run cds",
       "runtimeExecutable": "cds",
-      "args": [
-        "serve",
-        "--with-mocks",
-        "--in-memory?"
-      ],
+      "cwd": "${workspaceFolder}",
+      "args": []
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Run cds",
+      "cwd": "${workspaceFolder}//capmapp"
+    },
+    {
+      "name": "Praveen Modules Debug",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}//capmapp",
       "skipFiles": [
         "<node_internals>/**"
-      ]
+      ],
+      "command": "cds watch"
     }
   ]
 }
