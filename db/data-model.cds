@@ -5,7 +5,7 @@ using { praveen.commons as common } from './commons';
 
 context master {
     entity businesspartner{
-        key NODE_KEY : common.guid;
+        key NODE_KEY : common.guid @title : '{i18n>PARTNER_GUID}';
         BP_ROLE : String(2);
         EMAIL_ADDRESS : String(105);
         PHONE_NUMBER : String(32);
@@ -13,16 +13,16 @@ context master {
         WEB_ADDRESS : String(44);
         ADDRESS_GUID : Association to address;
         BP_ID : String(32);
-        COMPANY_NAME : String(250);
+        COMPANY_NAME : String(250) @title : '{i18n>COMPANY_NAME}';
     }
 
     entity address {
         key NODE_KEY : common.guid;
-        CITY : String(44);
+        CITY : String(44) @title : '{i18n>PARTNER_GUID}';
         POSTAL_CODE : String(8);
         STREET :String(44);
         BUILDING : String(128);
-        COUNTRY : String(44);
+        COUNTRY : String(44) @title : '{i18n>PARTNER_GUID}';
         ADDRESS_TYPE : String(44);
         VAL_START_DATE : Date;
         VAL_END_DATE : Date;
@@ -63,8 +63,8 @@ context master {
         loginName : String(12);
         Currency : Currency;
         salaryAmount : common.AmountT;
-        accountNumber : String(16);
-        bankId : String(8);
+        accountNumber : String(9);
+        bankId : String(9);
         bankName : String(64);
     }
      
@@ -73,10 +73,10 @@ context master {
 context transaction {
     entity purchaseorder : common.Amount {
         key NODE_KEY : common.guid;
-        PO_ID : String(40);
+        PO_ID : String(40) @title : '{i18n>PO_ID}';
         PARTNER_GUID : Association to master.businesspartner;
-        LIFECYCLE_STATUS : String(1);
-        OVERALL_STATUS : String(1);
+        LIFECYCLE_STATUS : String(1) @title : '{i18n>LIFECYCLE_STATUS}';
+        OVERALL_STATUS : String(1) @title : '{i18n>OVERALL_STATUS}';
         Items : Association to many poitems on 
                 Items.PARENT_KEY = $self;  
     }

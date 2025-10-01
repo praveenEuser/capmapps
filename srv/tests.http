@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###Get data
 
-GET http://localhost:4004/odata/v4/CatalogService/PurchaseSet/74867AD200E41EDBA5D8B0C98DC28052/largestOrder()
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseSet/74867AD200E41EDBA5D8B0C98DC28052/
 
 
 ###Get Student Data
@@ -53,5 +53,77 @@ Content-Type: application/json
     "STANDARD": "10",
     "GENDER": "F"
 }
+
+
+###
+GET http://localhost:4004/odata/v4/MyServices/EmployeeSet
+
+
+### Post Generic Handlers - before
+POST http://localhost:4004/odata/v4/MyServices/EmployeeSet
+Content-Type: application/json
+
+{
+      "nameFirst": "Praveen",
+      "nameMiddle": null,
+      "nameLast": "Spring",
+      "nameInitials": null,
+      "sex": "F",
+      "language": "E",
+      "phoneNumber": "+1 224 374 524",
+      "email": "sally.spring@itelo.info",
+      "loginName": "SPRINGS",
+      "Currency_code": "USD",
+      "salaryAmount": 1000000,
+      "accountNumber": "111222333",
+      "bankId": "510000633",
+      "bankName": "My Bank of Antioch"
+}
+
+###ON
+
+GET http://localhost:4004/odata/v4/MyServices/ReadEmployeeSet
+
+###
+
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseSet/74867AD200E41EDBA5D8B0C98DC28052
+
+### Post Boost
+
+POST http://localhost:4004/v2/odata/v4/CatalogService/PurchaseSet/74867AD200E41EDBA5D8B0C98DC28052/boost
+Content-Type: application/json
+
+{}
+
+
+### Get Data in Employee
+
+GET http://localhost:4004/odata/v4/MyServices/EmployeeSet
+
+### Add Data in Employee
+
+POST http://localhost:4004/odata/v4/MyServices/EmployeeSet
+Content-Type: application/json
+
+{
+      "nameFirst": "John",
+      "nameMiddle": null,
+      "nameLast": "Spring",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": "+1 224 374 524",
+      "email": "sally.spring@itelo.info",
+      "loginName": "SPRINGS",
+      "Currency_code": "INR",
+      "salaryAmount": 100000,
+      "accountNumber": "111222313",
+      "bankId": "510000623",
+      "bankName": "My Bank of India"
+}
+
+
+
+
 
 

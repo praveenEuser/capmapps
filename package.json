@@ -16,9 +16,34 @@
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.13.0",
-    "@cap-js/sqlite": "^2"
+    "@cap-js/sqlite": "^2",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-product": "cds watch --open productset.product/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project1": "cds watch --open com.fin.project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project01": "cds watch --open productset.project01/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-pos": "cds watch --open com.pos.pos/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/product",
+    "app/project1",
+    "app/project01",
+    "app/project1",
+    "app/project1",
+    "app/pos",
+    "app/project1"
+  ],
+  "cds": {
+  "requires": {
+    "static": {
+      "kind": "static",
+      "folder": "app"
+    }
   }
+}
 }
