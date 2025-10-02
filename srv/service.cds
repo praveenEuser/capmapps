@@ -14,7 +14,12 @@ service MyService @(path : 'CatalogService') {
     entity BusinessPartnerSet as projection on Omaster.businesspartner;
     entity EmployeesSet as projection on Omaster.employees;
     entity ProductSet as projection on Omaster.product;
-    entity PurchaseSet as projection on Otransaction.purchaseorder{
+
+    function getOrderStatus() returns PurchaseSet;
+    entity PurchaseSet @(
+        odata.draft.enabled : true,
+        Common.DefaultValuesFunction: 'getOrderStatus'
+    ) as projection on Otransaction.purchaseorder{
         *,
         case OVERALL_STATUS
             when 'N' then 'New'

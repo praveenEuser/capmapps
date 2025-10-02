@@ -72,12 +72,12 @@ context master {
 
 context transaction {
     entity purchaseorder : common.Amount {
-        key NODE_KEY : common.guid;
+        key NODE_KEY : common.guid @title : '{i18n>NODE_KEY}';
         PO_ID : String(40) @title : '{i18n>PO_ID}';
         PARTNER_GUID : Association to master.businesspartner;
         LIFECYCLE_STATUS : String(1) @title : '{i18n>LIFECYCLE_STATUS}';
         OVERALL_STATUS : String(1) @title : '{i18n>OVERALL_STATUS}';
-        Items : Association to many poitems on 
+        Items : Composition of many poitems on 
                 Items.PARENT_KEY = $self;  
     }
 
