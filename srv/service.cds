@@ -28,7 +28,7 @@ service MyService @(path : 'CatalogService') {
             when 'X' then 1
             when 'A' then 3
             when 'D' then 3 end as ColorCoding: Integer,
-        Items
+        Items,
     }
 
 
@@ -40,9 +40,7 @@ service MyService @(path : 'CatalogService') {
         }
         action boost() returns PurchaseSet;
         function largestOrder() returns PurchaseSet;
-    };
-
-    
+    };    
     entity Po_items as projection on Otransaction.poitems;
     
 }

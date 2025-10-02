@@ -6,7 +6,7 @@ annotate service.PurchaseSet with @(
         PO_ID,
         PARTNER_GUID.COMPANY_NAME,
         PARTNER_GUID.ADDRESS_GUID.COUNTRY,
-        GROSS_AMOUNT
+        GROSS_AMOUNT,
     ],
     UI.LineItem:[
         {
@@ -37,6 +37,15 @@ annotate service.PurchaseSet with @(
             Value : OverallStatus,
             Criticality : ColorCoding,
         },
+        {
+            $Type : 'UI.DataField',
+            Value : CURRENCY_code,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : NET_AMOUNT,
+        },
+
     ],
     UI.HeaderInfo:{
         TypeName : 'Purchase Order',
@@ -145,6 +154,43 @@ annotate service.Po_items with @(
             $Type : 'UI.DataField',
             Value : CURRENCY_code,
         },
+    ],
+    UI.HeaderInfo:{
+        TypeName : 'PO Item',
+        TypeNamePlural : 'PO Items',
+        Title:{
+            $Type : 'UI.DataField',
+            Value : PO_ITEM_POS,
+        },
+        Description:{
+            $Type : 'UI.DataField',
+            Value : PRODUCT_GUID.DESCRIPTION
+        },
+    },
+    UI.Facets:[
+        {
+            $Type : 'UI.CollectionFacet',
+            Label : 'Item Info',
+            Facets : [
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Details',
+                    Target : '',
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Price',
+                    Target : '',
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    Label : 'Product Details',
+                    Target : '',
+                },
+
+            ]
+        },
     ]
+    
 );
 

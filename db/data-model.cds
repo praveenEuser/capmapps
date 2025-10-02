@@ -5,7 +5,7 @@ using { praveen.commons as common } from './commons';
 
 context master {
     entity businesspartner{
-        key NODE_KEY : common.guid @title : '{i18n>PARTNER_GUID}';
+        key NODE_KEY : common.guid;
         BP_ROLE : String(2);
         EMAIL_ADDRESS : String(105);
         PHONE_NUMBER : String(32);
