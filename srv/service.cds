@@ -4,7 +4,7 @@ using { praveen.db.master as Omaster, praveen.db.transaction as Otransaction , }
 
 
 
-service MyService @(path : 'CatalogService') {
+service MyService @(path : 'CatalogService', requires: 'authenticated-user') {
 
     entity StudentSet as projection on master.student;
     entity StandardSet as projection on master.standards;
@@ -12,7 +12,10 @@ service MyService @(path : 'CatalogService') {
     entity BookrentalSet as projection on transaction.rentals;
     entity AddressSet as projection on Omaster.address;
     entity BusinessPartnerSet as projection on Omaster.businesspartner;
-    entity EmployeesSet as projection on Omaster.employees;
+    entity EmployeesSet @(restrict: [
+        { grant: 'READ', to:'Viewer', where: 'bankName = $user.BankName'},
+        { grant: 'WRITE', to: 'Admin'}
+    ]) as projection on Omaster.employees;
     entity ProductSet as projection on Omaster.product;
 
     function getOrderStatus() returns PurchaseSet;

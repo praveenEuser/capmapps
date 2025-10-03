@@ -47,9 +47,32 @@
         "kind": "static",
         "folder": "app"
       },
-      "[production]": {
-        "auth": "xsuaa"
+      "uaa": {
+        "kind": "xsuaa"
+      },
+      "auth": {
+        "[development]": {
+          "strategy": "mocked",
+          "users": {
+            "praveen": {
+              "roles": ["Viewer"],
+              "userAttributes": {
+                "BankName" : ["My Bank of San Francisco"]
+              }
+            },
+            "kumar": {
+              "roles": ["Viewer","Admin"],
+              "userAttributes": {
+                "BankName" : ["My Bank of London","My Bank of New York"]
+              }
+            }
+          }
+        },
+        "[production]": {
+          "strategy": "JWT"
+        }
       }
+      
     }
   }
 }

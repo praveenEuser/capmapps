@@ -1,64 +1,52 @@
 {
   "xsappname" : "capapp", 
   "scopes"     : [ { 
-                    "name" : "$XSAPPNAME.Display", 
-                    "description" : "display" }, 
+                    "name" : "$XSAPPNAME.Viewer", 
+                    "description" : "Able to view data from services" }, 
                    { 
-                    "name" : "$XSAPPNAME.Edit", 
-                    "description" : "edit" }, 
-                   { 
-                    "name" : "$XSAPPNAME.Delete", 
-                    "description": "delete",
-                    "granted-apps": ["$XSAPPNAME(application,business-partner)"]
-                   }
+                    "name" : "$XSAPPNAME.Admin", 
+                    "description" : "Able to edit data also" 
+                  }
 ],
  "attributes" : [ { 
-                    "name" : "Country", 
-                    "description" : "Country", 
-                    "valueType" : "string" }, 
-                   {
-                    "name" : "CostCenter", 
-                    "description" : "CostCenter", 
-                    "valueType" : "string" } 
+                    "name" : "BankName", 
+                    "description" : "BankName allow Row level Security", 
+                    "valueType" : "string" 
+                  }
                  ], 
  "role-templates": [ { 
                     "name"                : "Viewer", 
-                    "description"         : "View all books", 
-                    "default-role-name": "Viewer: Authorized to Read All Books",
+                    "description"         : "View all the employees", 
+                    "default-role-name": "Viewer: Authorized to Read All Emplyees",
                     "scope-references"    : [ 
-                                         "$XSAPPNAME.Display" ], 
+                                         "$XSAPPNAME.Viewer" ], 
                     "attribute-references": [
                                             {
-                                            "name" : "Country",
-                                            "default-values" : [
-                                                                "USA", "Germany"
-                                                               ]
+                                            "name" : "BankName"
                                             }
                                             ]  
                     }, 
                    { 
-                    "name"               : "Editor", 
-                    "description"        : "Edit, delete books", 
+                    "name"               : "Admin", 
+                    "description"        : "Edit the Employee Details", 
                     "scope-references"   : [ 
-                                          "$XSAPPNAME.Edit", 
-                                          "$XSAPPNAME.Delete" ], 
-                    "attribute-references" : [ 
-                                          "Country", 
-                                          "CostCenter"] 
+                                          "$XSAPPNAME.Admin" 
+                                        ]
                     } 
                    ], 
  "role-collections": [
                      {
-                    "name": "UserViewerRC",
-                    "description": "User Viewer Role Collection",
-                    "role-template-references": ["$XSAPPNAME.Viewer"]
+                    "name": "ViewerAndAdminColl",
+                    "description": "User Viewer and Editor Role Collection",
+                    "role-template-references": ["$XSAPPNAME.Viewer","$XSAPPNAME.Admin"]
                      }
                    ],
  "authorities":["$ACCEPT_GRANTED_AUTHORITIES"],
  "oauth2-configuration": {
                     "token-validity": 900, 
-                    "redirect-uris": ["https://myapp.cfapps.eu10.hana.ondemand.com","https://myapp.mydomain.com/my/logout"], 
-                    "credential-types": ["binding-secret","x509"]
+                    "refresh-token-validity": 1800,
+                    "redirect-uris": ["https://api.cf.us10-001.hana.ondemand.com"], 
+                    "autoapprove": "false"
  },
  "xsenableasyncservice":"true"
 }
