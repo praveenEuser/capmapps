@@ -1,0 +1,64 @@
+{
+  "xsappname" : "capapp", 
+  "scopes"     : [ { 
+                    "name" : "$XSAPPNAME.Display", 
+                    "description" : "display" }, 
+                   { 
+                    "name" : "$XSAPPNAME.Edit", 
+                    "description" : "edit" }, 
+                   { 
+                    "name" : "$XSAPPNAME.Delete", 
+                    "description": "delete",
+                    "granted-apps": ["$XSAPPNAME(application,business-partner)"]
+                   }
+],
+ "attributes" : [ { 
+                    "name" : "Country", 
+                    "description" : "Country", 
+                    "valueType" : "string" }, 
+                   {
+                    "name" : "CostCenter", 
+                    "description" : "CostCenter", 
+                    "valueType" : "string" } 
+                 ], 
+ "role-templates": [ { 
+                    "name"                : "Viewer", 
+                    "description"         : "View all books", 
+                    "default-role-name": "Viewer: Authorized to Read All Books",
+                    "scope-references"    : [ 
+                                         "$XSAPPNAME.Display" ], 
+                    "attribute-references": [
+                                            {
+                                            "name" : "Country",
+                                            "default-values" : [
+                                                                "USA", "Germany"
+                                                               ]
+                                            }
+                                            ]  
+                    }, 
+                   { 
+                    "name"               : "Editor", 
+                    "description"        : "Edit, delete books", 
+                    "scope-references"   : [ 
+                                          "$XSAPPNAME.Edit", 
+                                          "$XSAPPNAME.Delete" ], 
+                    "attribute-references" : [ 
+                                          "Country", 
+                                          "CostCenter"] 
+                    } 
+                   ], 
+ "role-collections": [
+                     {
+                    "name": "UserViewerRC",
+                    "description": "User Viewer Role Collection",
+                    "role-template-references": ["$XSAPPNAME.Viewer"]
+                     }
+                   ],
+ "authorities":["$ACCEPT_GRANTED_AUTHORITIES"],
+ "oauth2-configuration": {
+                    "token-validity": 900, 
+                    "redirect-uris": ["https://myapp.cfapps.eu10.hana.ondemand.com","https://myapp.mydomain.com/my/logout"], 
+                    "credential-types": ["binding-secret","x509"]
+ },
+ "xsenableasyncservice":"true"
+}

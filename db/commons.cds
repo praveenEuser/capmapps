@@ -28,7 +28,7 @@ type Email :  guid @assert.format : '^(?!.*\.\.)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+
 
 
 
-type guid : String(32);
+type guid : String(60);
 
     //aspects, its like structure
 
