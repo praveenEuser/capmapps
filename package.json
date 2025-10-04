@@ -19,6 +19,7 @@
   "devDependencies": {
     "@cap-js/cds-types": "^0.13.0",
     "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
     "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
@@ -55,15 +56,25 @@
           "strategy": "mocked",
           "users": {
             "praveen": {
-              "roles": ["Viewer"],
+              "roles": [
+                "Viewer"
+              ],
               "userAttributes": {
-                "BankName" : ["My Bank of San Francisco"]
+                "BankName": [
+                  "My Bank of San Francisco"
+                ]
               }
             },
             "kumar": {
-              "roles": ["Viewer","Admin"],
+              "roles": [
+                "Viewer",
+                "Admin"
+              ],
               "userAttributes": {
-                "BankName" : ["My Bank of London","My Bank of New York"]
+                "BankName": [
+                  "My Bank of London",
+                  "My Bank of New York"
+                ]
               }
             }
           }
@@ -72,7 +83,6 @@
           "strategy": "JWT"
         }
       }
-      
     }
   }
 }
