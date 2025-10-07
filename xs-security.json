@@ -33,19 +33,12 @@
                                           "$XSAPPNAME.Admin" 
                                         ]
                     } 
-                   ], 
- "role-collections": [
-                     {
-                    "name": "ViewerAndAdminColl",
-                    "description": "User Viewer and Editor Role Collection",
-                    "role-template-references": ["$XSAPPNAME.Viewer","$XSAPPNAME.Admin"]
-                     }
                    ],
  "authorities":["$ACCEPT_GRANTED_AUTHORITIES"],
  "oauth2-configuration": {
                     "token-validity": 900, 
                     "refresh-token-validity": 1800,
-                    "redirect-uris": ["https://api.cf.us10-001.hana.ondemand.com"], 
+                    "redirect-uris": ["https://api.cf.us10-001.hana.ondemand.com/login/callback"], 
                     "autoapprove": "false"
  },
  "xsenableasyncservice":"true"

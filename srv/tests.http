@@ -125,8 +125,9 @@ Content-Type: application/json
 
 
 ###Test Security : Authentication and Authorization
-http://localhost:4004/odata/v4/CatalogService/EmployeesSet/$count
+http://localhost:4004/odata/v4/CatalogService/EmployeesSet
 Authorization: Basic kumar:
+
 
 
 

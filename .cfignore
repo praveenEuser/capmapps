@@ -1,0 +1,10 @@
+# Local dev files
+.vscode/
+*.log
+.env
+
+# Node modules are installed on CF
+node_modules/
+
+# Ignore gen folder
+gen/

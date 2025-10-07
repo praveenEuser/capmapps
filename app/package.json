@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node /node_modules/@sap/approuter/approuter.js",
+    "start": "approuter",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -11,5 +11,8 @@
   "description": "",
   "dependencies": {
     "@sap/approuter": "^20.8.2"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^9"
   }
 }
