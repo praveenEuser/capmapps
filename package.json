@@ -9,7 +9,7 @@
     "@cap-js/hana": "^2.3.2",
     "@sap/cds": "^9",
     "@sap/cds-dk": "^9.3.2",
-    "@sap/xssec": "^4.10.0",
+    "@sap/xssec": "^4",
     "express": "^4",
     "ig": "^0.0.5"
   },
@@ -44,10 +44,6 @@
   "cds": {
     "requires": {
       "db": "hana",
-      "static": {
-        "kind": "static",
-        "folder": "app"
-      },
       "uaa": {
         "kind": "xsuaa"
       },

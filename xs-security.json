@@ -1,45 +1,47 @@
 {
-  "xsappname" : "capapp", 
-  "scopes"     : [ { 
-                    "name" : "$XSAPPNAME.Viewer", 
-                    "description" : "Able to view data from services" }, 
-                   { 
-                    "name" : "$XSAPPNAME.Admin", 
-                    "description" : "Able to edit data also" 
-                  }
-],
- "attributes" : [ { 
-                    "name" : "BankName", 
-                    "description" : "BankName allow Row level Security", 
-                    "valueType" : "string" 
-                  }
-                 ], 
- "role-templates": [ { 
-                    "name"                : "Viewer", 
-                    "description"         : "View all the employees", 
-                    "default-role-name": "Viewer: Authorized to Read All Emplyees",
-                    "scope-references"    : [ 
-                                         "$XSAPPNAME.Viewer" ], 
-                    "attribute-references": [
-                                            {
-                                            "name" : "BankName"
-                                            }
-                                            ]  
-                    }, 
-                   { 
-                    "name"               : "Admin", 
-                    "description"        : "Edit the Employee Details", 
-                    "scope-references"   : [ 
-                                          "$XSAPPNAME.Admin" 
-                                        ]
-                    } 
-                   ],
- "authorities":["$ACCEPT_GRANTED_AUTHORITIES"],
- "oauth2-configuration": {
-                    "token-validity": 900, 
-                    "refresh-token-validity": 1800,
-                    "redirect-uris": ["https://api.cf.us10-001.hana.ondemand.com/login/callback"], 
-                    "autoapprove": "false"
- },
- "xsenableasyncservice":"true"
+  "xsappname": "mycapapp",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "someone can view data using this scope"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "someone can perform CURD on data using this scope"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "BankName",
+      "description": "Bank Name property",
+      "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "View all data from our Catalog service",
+      "default-role-name": "Viewer: Authorized to Read All Data",
+      "scope-references": [
+        "$XSAPPNAME.Viewer"
+      ],
+      "attribute-references": [
+        {
+          "name": "BankName"
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "description": "Edit, delete all data from service",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "authorities": [
+    "$ACCEPT_GRANTED_AUTHORITIES"
+  ],
+  "xsenableasyncservice": "true"
 }

@@ -25,6 +25,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: capmapp-db
+      - name: capmapp-auth
 
   - name: capmapp-db-deployer
     type: hdb
@@ -48,6 +49,7 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
+      - name: capmapp-auth
     provides:
       - name: app-api
         properties:
@@ -60,10 +62,30 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-
-  - name: capmapp-xsuaa
+  - name: capmapp-auth
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
-      path: xs-security.json
+      path: ./xs-security.json
+      config:
+        xsappname: capmapp-${org}-${space}
+        tenant-mode: dedicated
+        role-collections:
+          - name: 'Viewer (capmapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.Viewer'
+          - name: 'Admin (capmapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.Admin'
+          - name: 'userattributes (capmapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.userattributes'
+        oauth2-configuration:
+          redirect-uris:
+            - "https://8ff19e62trial-dev-capmapp.cfapps.us10-001.hana.ondemand.com/login/callback"
+    requires:
+      - name: app-api
